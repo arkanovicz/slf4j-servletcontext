@@ -22,7 +22,7 @@
       
 
 <h1>
-<a id="webapp-slf4j-logger" class="anchor" href="#webapp-slf4j-logger" aria-hidden="true"><span class="octicon octicon-link"></span></a>webapp-slf4j-logger</h1>
+<a id="webapp-slf4j-logger" class="anchor" name="webapp-slf4j-logger" href="#webapp-slf4j-logger" aria-hidden="true"><span class="octicon octicon-link"></span></a>webapp-slf4j-logger</h1>
 
 <p>This is a simple logger with minimal configuration.  It is an
 <a href="http://www.slf4j.org/">SLF4J</a> backend that forwards logs to a
@@ -40,15 +40,16 @@
 </ul>
 
 <h1>
-<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h1>
+<a id="configuration" class="anchor" name="configuration" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h1>
 
 <h2>
-<a id="inclusion-in-a-30-webapp" class="anchor" href="#inclusion-in-a-30-webapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a 3.0 webapp</h2>
+<a id="inclusion-in-a-30-webapp" class="anchor" name="inclusion-in-a-30-webapp" href="#inclusion-in-a-30-webapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a 3.0+ webapp</h2>
 
-<p>If your J2EE container is complient with the 3.0 servlet API, then you just have to include webapp-slf4j-logger.jar in your WEB-INF/lib directory.</p>
+<p>If your J2EE container is complient with the 3.0+ servlet API, then you just have to include webapp-slf4j-logger.jar in your WEB-INF/lib directory.</p>
+<p>You must just make sure that the <code>&lt;web-app&gt;</code> root tag of your <code>web.xml</code> doesn't set <code>metadata-complete=true</code>, otherwise refer to <a href="#"></a>.</p>
 
 <h2>
-<a id="log-level" class="anchor" href="#log-level" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log level</h2>
+<a id="log-level" class="anchor" name="log-level" href="#log-level" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log level</h2>
 
 <p>The logging level can be set with a context parameter.  Possible
 values are (case insensitive) <code>trace</code>, <code>debug</code>, <code>info</code>, <code>warn</code>,
@@ -63,7 +64,7 @@ values are (case insensitive) <code>trace</code>, <code>debug</code>, <code>info
 <p>The default enabled level is INFO.</p>
 
 <h2>
-<a id="format" class="anchor" href="#format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format</h2>
+<a id="format" class="anchor" name="format" href="#format" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format</h2>
 
 <p>The format can be specified with a context parameter, as a sequence of placeholders and literal text.</p>
 
@@ -78,9 +79,9 @@ values are (case insensitive) <code>trace</code>, <code>debug</code>, <code>info
 <p>Predefined placeholders:</p>
 
 <ul>
-<li>%date - the timestamp, formatted as "YYYY-MM-DD HH:mm:ss,sss".</li>
-<li>%level, %Level, %LEVEL - the level in lowercase, standard case or uppercase (and left-padded to five characters).</li>
-<li>%logger - the name of the logger (for class names, the package is not shown).</li>
+<li>%date - the timestamp, formatted as "YYYY-MM-DD HH:mm:ss,sss"</li>
+<li>%level, %Level, %LEVEL - the level in lowercase, standard case or uppercase (and left-padded to five characters)</li>
+<li>%logger - the name of the logger</li>
 <li>%ip - the IP address of the current request</li>
 <li>%message - the actual log message string</li>
 </ul>
@@ -93,7 +94,7 @@ you can use the provided com.republicate.slf4j.helpers.IPFilter, and set up a fo
 (it doesn't include %date, as the date will usually be added by the J2EE container, nor does it add a terminal \n, as the container will take care of it).</p>
 
 <h2>
-<a id="email-notifications" class="anchor" href="#email-notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Email notifications</h2>
+<a id="email-notifications" class="anchor" name="email-notification" href="#email-notifications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Email notifications</h2>
 
 <p>The logger can be configured to send an email if severity is beyond a certain level (typically, warning or error). The configuration parameter is of the form:
     <em>level</em>:<em>protocol</em>:<em>mail_server</em>:<em>port</em>:<em>from_address</em>:<em>to_address</em>
@@ -108,7 +109,7 @@ The only protocol supported for now is smtp.</p>
 </code></pre>
 
 <h2>
-<a id="inclusion-in-a-maven-based-project" class="anchor" href="#inclusion-in-a-maven-based-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a maven-based project</h2>
+<a id="inclusion-in-a-maven-based-project" class="anchor" name="inclusion-in-a-maven-based-project" href="#inclusion-in-a-maven-based-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a maven-based project</h2>
 
 <p>Declare a dependency on <code>webapp-slf4j-logger</code>:</p>
 
@@ -120,9 +121,9 @@ The only protocol supported for now is smtp.</p>
 </code></pre>
 
 <h2>
-<a id="inclusion-in-a-non-30-webapp" class="anchor" href="#inclusion-in-a-non-30-webapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a non-3.0 webapp</h2>
+<a id="inclusion-in-a-non-30-webapp" class="anchor" name="inclusion-in-a-non-30-webapp" href="#inclusion-in-a-non-30-webapp" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inclusion in a non-3.0+ webapp</h2>
 
-<p>If your J2EE container is not complient with servlet API 3.0, you have to add to <code>web.xml</code>:</p>
+<p>If your J2EE container is not complient with servlet API 3.0+, or if you want to use <code>metadata-complete=true</code> in a 3.0+ application to speed up its restart, you have to add to <code>web.xml</code>:</p>
 
 <pre><code>&lt;listener&gt;
   &lt;listener-class&gt;com.republicate.slf4j.impl.ServletContextLoggerSCL&lt;/listener-class&gt;
@@ -148,10 +149,10 @@ The only protocol supported for now is smtp.</p>
 </code></pre>
 
 <h2>
-<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
+<a id="faq" class="anchor" name="faq" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
 
 <h3>
-<a id="all-other-slf4j-jars-begin-with-slf4j-why-isnt-this-library-called-slf4j-webapp-logger" class="anchor" href="#all-other-slf4j-jars-begin-with-slf4j-why-isnt-this-library-called-slf4j-webapp-logger" aria-hidden="true"><span class="octicon octicon-link"></span></a>All other SLF4J jars begin with "slf4j". Why isn't this library called slf4j-webapp-logger?</h3>
+<a id="all-other-slf4j-jars-begin-with-slf4j-why-isnt-this-library-called-slf4j-webapp-logger" class="anchor" name="all-other-slf4j-jars-begin-with-slf4j-why-isnt-this-library-called-slf4j-webapp-logger" href="#all-other-slf4j-jars-begin-with-slf4j-why-isnt-this-library-called-slf4j-webapp-logger" aria-hidden="true"><span class="octicon octicon-link"></span></a>All other SLF4J jars begin with "slf4j". Why isn't this library called slf4j-webapp-logger?</h3>
 
 <p>Some containers, Tomcat at least, will not search for servlet-3.0 annotations in a certain number of jars, among which all slf4j-* jars...</p>
 
