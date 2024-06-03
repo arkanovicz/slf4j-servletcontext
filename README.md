@@ -68,7 +68,7 @@ But make sure that `metadata-complete` attribute of the root `<web-app>` tag is 
 
 Configuration parameters are read:
 
-+ from context parameters:
++ from context parameters, with the configuration namespace prefix:
 
 ```xml
 <context-param>
@@ -77,7 +77,13 @@ Configuration parameters are read:
 </context-param>
 ```
 
-+ from the `/WEB-INF/logger.properties` file.
++ from the `/WEB-INF/logger.properties` file, without the configuration namespace prefix:
+
+```properties
+***parameter***=***value***
+```
+
++ from the JVM system properties, with the configuration namespace prefix
 
 The latter takes ther precedence and overwrites the former.
 

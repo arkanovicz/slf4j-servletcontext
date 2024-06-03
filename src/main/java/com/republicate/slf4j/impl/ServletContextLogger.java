@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -412,10 +410,12 @@ public final class ServletContextLogger extends MarkerIgnoringBase
      * should be done in a ServletContextListener, e.g. ServletContextLoggerSCL.</p>
      * <p>Configuration is read:</p>
      * <ul>
-     *     <li>from /WEB-INF/web.xml init parameters</li>
+     *     <li>from /WEB-INF/web.xml init parameters, prefixed by the configuration namespace</li>
      *     <li>from /WEB-INF/logger.properties</li>
+     *     <li>from Java system properties, prefixed by the configuration namespace</li>
      * </ul>
      * <p>The latter has the precedence, since it will override the former.</p>
+     * <p>The configuration namespace is <code>webapp-slf4j-logger</code></p>
      * 
      * @param ctx servlet context
      */
@@ -445,6 +445,12 @@ public final class ServletContextLogger extends MarkerIgnoringBase
                         String value = properties.getProperty(initParameter);
                         configure(initParameter, value);
                     }
+                }
+                for (String prop: System.getProperties().stringPropertyNames()) {
+                    if (!prop.startsWith(INIT_PARAMETER_PREFIX + '.')) continue;
+                    String value = System.getProperty(prop);
+                    prop = prop.substring(INIT_PARAMETER_PREFIX.length() + 1);
+                    configure(prop, value);
                 }
             }
             catch (Throwable t)
